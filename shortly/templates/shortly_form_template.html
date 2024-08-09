@@ -1,0 +1,11 @@
+<form method="post">
+    {% csrf_token %}
+    {{ shortly_form.as_p }}
+    <button type="submit">Submit</button>
+    <div>
+        <div>Shortened URL id: {{ shortened_url }}</div>
+        <div>
+            <a href={{ shortened_url }} target="_blank">go to link</a>
+        </div>
+    </div>
+</form>

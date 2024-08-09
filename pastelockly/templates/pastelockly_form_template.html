@@ -1,0 +1,29 @@
+<h1>Create a new snip</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{ pastelockly_form.as_p }}
+    <button type="submit">Submit</button>
+</form>
+<div>
+    <h3>Errors:</h3>
+    <ul>
+        {% for error in errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+</div>
+<div>
+    <h3>List of snips</h3>
+    {% for item in pastelockly_list %}
+        <ul>
+            <li>snip - {{ item.id }}</li>
+            <script>
+                function copyLink(id) {
+                    console.log("http://localhost:8000/pastelockly/" + id);
+                    navigator.clipboard.writeText("http://localhost:8000/pastelockly/" + id)
+                }
+            </script>
+            <button onclick="copyLink({{ item.id }})">Copy</button>
+        </ul>
+    {% endfor %}
+</div>

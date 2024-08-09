@@ -1,0 +1,19 @@
+<form method="POST">
+    {% csrf_token %}
+    <textarea readonly="readonly" name="text_field">
+        {{ pasteLock.text_field }}
+    </textarea>
+    {% if pasteLock.is_locked %}
+        <h3>Paste snip is locked - content is encrypted</h3>
+        <input type="password" name="password_field" minlength="16" maxlength="16" required={{ pasteLock.is_locked }}>
+        <button type="submit">Submit</button>
+    {% endif %}
+    <div>
+        Errors:
+        <ul>
+            {% for error in errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</form>
